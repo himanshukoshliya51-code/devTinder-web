@@ -7,12 +7,12 @@ const UserCard = ({user}) => {
    <div className="card bg-base-300 w-96 shadow-sm">
   <figure>
     <img
-      src={user.photoUrl}
+      src={photoUrl}
       alt="Photo" />
   </figure>
   <div className="card-body">
     <h2 className="card-title">{firstName + " " + lastName}</h2>
-    {age && gender&& <p>{age + ", "+ gender}r</p>}
+    {age && gender&& <p>{age + ", "+ gender}</p>}
     <p>{about}</p>
     <div className="card-actions justify-center ">
               <button className="btn btn-primary mx-4">Ignore</button>
