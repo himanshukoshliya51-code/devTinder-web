@@ -1,0 +1,10 @@
+﻿
+> devtinder-web@0.0.0 lint
+> eslint .
+
+
+C:\Users\Himanshu Yadav\Desktop\devTinder-web111\src\components\Feed.jsx
+  28:6  warning  React Hook useEffect has a missing dependency: 'feed'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+Γ£û 1 problem (0 errors, 1 warning)
+

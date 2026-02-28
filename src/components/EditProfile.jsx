@@ -46,69 +46,69 @@ const EditProfile = ({ user }) => {
     <>
       <div className="flex justify-center my-10">
         <div className="flex justify-center mx-10">
-          <div className="card w-96 bg-base-300 card-lg shadow-sm">
+          <div className="card w-96 bg-[#111111]/80 backdrop-blur-xl border border-white/10 shadow-2xl animate-fade-in card-lg">
             <div className="card-body">
-              <h2 className="card-title">Edit Profile </h2>
-              <div className="my-3">
+              <h2 className="card-title text-3xl font-jetbrains font-bold text-white mb-4">Edit Profile </h2>
+              <div className="my-3 space-y-4">
                 <fieldset className="fieldset">
-                  <legend className="fieldset-legend">First Name</legend>
+                  <legend className="fieldset-legend font-inter font-semibold text-gray-400">First Name</legend>
                   <input
                     type="text"
                     value={firstName}
-                    className="input"
+                    className="input w-full bg-black border border-white/10 focus:border-[#00f5ff] focus:outline-none transition-all rounded-xl text-gray-200 font-inter"
                     onChange={(e) => setFirstName(e.target.value)}
                   />
                 </fieldset>
                 <fieldset className="fieldset">
-                  <legend className="fieldset-legend">Last Name</legend>
+                  <legend className="fieldset-legend font-inter font-semibold text-gray-400">Last Name</legend>
                   <input
                     type="text"
                     value={lastName}
-                    className="input"
+                    className="input w-full bg-black border border-white/10 focus:border-[#00f5ff] focus:outline-none transition-all rounded-xl text-gray-200 font-inter"
                     onChange={(e) => setLastName(e.target.value)}
                   />
                 </fieldset>
                 <fieldset className="fieldset">
-                  <legend className="fieldset-legend">PhotoURL</legend>
+                  <legend className="fieldset-legend font-inter font-semibold text-gray-400">PhotoURL</legend>
                   <input
                     type="text"
                     value={photoUrl}
-                    className="input"
+                    className="input w-full bg-black border border-white/10 focus:border-[#00f5ff] focus:outline-none transition-all rounded-xl text-gray-200 font-inter"
                     onChange={(e) => setPhotoUrl(e.target.value)}
                   />
                 </fieldset>
 
                 <fieldset className="fieldset">
-                  <legend className="fieldset-legend">Age</legend>
+                  <legend className="fieldset-legend font-inter font-semibold text-gray-400">Age</legend>
                   <input
                     type="text"
                     value={age}
-                    className="input"
+                    className="input w-full bg-black border border-white/10 focus:border-[#00f5ff] focus:outline-none transition-all rounded-xl text-gray-200 font-inter"
                     onChange={(e) => setAge(e.target.value)}
                   />
                 </fieldset>
                 <fieldset className="fieldset">
-                  <legend className="fieldset-legend">Gender</legend>
+                  <legend className="fieldset-legend font-inter font-semibold text-gray-400">Gender</legend>
                   <input
                     type="text"
                     value={gender}
-                    className="input"
+                    className="input w-full bg-black border border-white/10 focus:border-[#00f5ff] focus:outline-none transition-all rounded-xl text-gray-200 font-inter"
                     onChange={(e) => setGender(e.target.value)}
                   />
                 </fieldset>
                 <fieldset className="fieldset">
-                  <legend className="fieldset-legend">About</legend>
+                  <legend className="fieldset-legend font-inter font-semibold text-gray-400">About</legend>
                   <input
                     type="text"
                     value={about}
-                    className="input"
+                    className="input w-full bg-black border border-white/10 focus:border-[#00f5ff] focus:outline-none transition-all rounded-xl text-gray-200 font-inter"
                     onChange={(e) => setAbout(e.target.value)}
                   />
                 </fieldset>
               </div>
               <p className="text-red-500">{error}</p>
-              <div className="justify-center card-actions">
-                <button className="btn btn-primary" onClick={saveProfile}>
+              <div className="justify-center card-actions mt-4">
+                <button className="btn w-full bg-[#00f5ff]/10 border border-[#00f5ff]/50 text-[#00f5ff] hover-glow-cyan transition-all duration-300 text-lg rounded-xl font-jetbrains font-medium shadow-md" onClick={saveProfile}>
                   Save Profile
                 </button>
               </div>
@@ -120,9 +120,9 @@ const EditProfile = ({ user }) => {
         />
       </div>
       {showToast && (
-        <div className="toast toast-top toast-center">
-          <div className="alert alert-success">
-            <span>Profile saved successfully.</span>
+        <div className="toast toast-top toast-center z-[100] mt-10 animate-fade-in">
+          <div className="alert bg-[#111111]/90 backdrop-blur-xl border border-[#00f5ff]/50 text-[#00f5ff] shadow-[0_0_15px_rgba(0,245,255,0.3)] font-jetbrains rounded-xl">
+            <span>✓ Profile saved successfully.</span>
           </div>
         </div>
       )}

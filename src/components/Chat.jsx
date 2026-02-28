@@ -12,26 +12,28 @@ const Chat = () => {
   const user = useSelector((store) => store.user);
   const userId = user?._id;
 
-  const fetchChatMessages = async () => {
-    const chat = await axios.get(BASE_URL + "/chat/" + targetUserId, {
-      withCredentials: true,
-    });
-
-    console.log(chat.data.messages);
-
-    const chatMessages = chat?.data?.messages.map((msg) => {
-      const { senderId, text } = msg;
-      return {
-        firstName: senderId?.firstName,
-        lastName: senderId?.lastName,
-        text,
-      };
-    });
-    setMessages(chatMessages);
-  };
   useEffect(() => {
+    const fetchChatMessages = async () => {
+      try {
+        const chat = await axios.get(BASE_URL + "/chat/" + targetUserId, {
+          withCredentials: true,
+        });
+
+        const chatMessages = chat?.data?.messages.map((msg) => {
+          const { senderId, text } = msg;
+          return {
+            firstName: senderId?.firstName,
+            lastName: senderId?.lastName,
+            text,
+          };
+        });
+        setMessages(chatMessages);
+      } catch (err) {
+        console.error(err);
+      }
+    };
     fetchChatMessages();
-  }, []);
+  }, [targetUserId]);
 
   useEffect(() => {
     if (!userId) {
@@ -53,7 +55,7 @@ const Chat = () => {
     return () => {
       socket.disconnect();
     };
-  }, [userId, targetUserId]);
+  }, [userId, targetUserId, user?.firstName]);
 
   const sendMessage = () => {
     const socket = createSocketConnection();

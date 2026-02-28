@@ -1,0 +1,83 @@
+﻿
+> devtinder-web@0.0.0 lint
+> eslint .
+
+
+C:\Users\Himanshu Yadav\Desktop\devTinder-web111\src\components\Body.jsx
+  33:6  warning  React Hook useEffect has a missing dependency: 'fetchUser'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Users\Himanshu Yadav\Desktop\devTinder-web111\src\components\Chat.jsx
+  33:5  error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+  31 |   };
+  32 |   useEffect(() => {
+> 33 |     fetchChatMessages();
+     |     ^^^^^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  34 |   }, []);
+  35 |
+  36 |   useEffect(() => {  react-hooks/set-state-in-effect
+  34:6  warning  React Hook useEffect has a missing dependency: 'fetchChatMessages'. Either include it or remove the dependency array                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          react-hooks/exhaustive-deps
+  56:6  warning  React Hook useEffect has a missing dependency: 'user.firstName'. Either include it or remove the dependency array                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             react-hooks/exhaustive-deps
+
+C:\Users\Himanshu Yadav\Desktop\devTinder-web111\src\components\Connections.jsx
+  25:6  warning  React Hook useEffect has a missing dependency: 'fetchConnections'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Users\Himanshu Yadav\Desktop\devTinder-web111\src\components\Feed.jsx
+  28:6  warning  React Hook useEffect has a missing dependency: 'getFeed'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Users\Himanshu Yadav\Desktop\devTinder-web111\src\components\Premium.jsx
+  8:5  error  Error: Cannot access variable before it is declared
+
+`verifyPremiumUser` is accessed before it is declared, which prevents the earlier access from updating when this value changes over time.
+
+   6 |   const [isUserPremium, setIsUserPremium] = useState(false);
+   7 |   useEffect(() => {
+>  8 |     verifyPremiumUser();
+     |     ^^^^^^^^^^^^^^^^^ `verifyPremiumUser` accessed before it is declared
+   9 |   }, []);
+  10 |
+  11 |   const verifyPremiumUser = async () => {
+
+   9 |   }, []);
+  10 |
+> 11 |   const verifyPremiumUser = async () => {
+     |   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 12 |     const res = await axios.get(BASE_URL + "/premium/verify", {
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 13 |       withCredentials: true,
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 14 |     });
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 15 |
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 16 |     if (res.data.isPremium) {
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 17 |       setIsUserPremium(true);
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 18 |     }
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 19 |   };
+     | ^^^^^ `verifyPremiumUser` is declared here
+  20 |
+  21 |   const handleBuyClick = async (type) => {
+  22 |     const order = await axios.post(  react-hooks/immutability
+
+C:\Users\Himanshu Yadav\Desktop\devTinder-web111\src\components\Requests.jsx
+  14:13  error    'res' is assigned a value but never used. Allowed unused vars must match /^[A-Z_]/u                              no-unused-vars
+  38:6   warning  React Hook useEffect has a missing dependency: 'fetchRequest'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Users\Himanshu Yadav\Desktop\devTinder-web111\src\components\UserCard.jsx
+  13:13  error  'res' is assigned a value but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+
+C:\Users\Himanshu Yadav\Desktop\devTinder-web111\src\utils\userSlice.js
+  10:18  error  'state' is defined but never used   no-unused-vars
+  10:25  error  'action' is defined but never used  no-unused-vars
+
+Γ£û 12 problems (6 errors, 6 warnings)
+

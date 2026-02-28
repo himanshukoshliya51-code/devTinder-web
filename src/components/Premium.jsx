@@ -4,10 +4,6 @@ import { useEffect, useState } from "react";
 
 const Premium = () => {
   const [isUserPremium, setIsUserPremium] = useState(false);
-  useEffect(() => {
-    verifyPremiumUser();
-  }, []);
-
   const verifyPremiumUser = async () => {
     const res = await axios.get(BASE_URL + "/premium/verify", {
       withCredentials: true,
@@ -17,6 +13,11 @@ const Premium = () => {
       setIsUserPremium(true);
     }
   };
+
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    verifyPremiumUser();
+  }, []);
 
   const handleBuyClick = async (type) => {
     const order = await axios.post(
@@ -53,35 +54,41 @@ const Premium = () => {
   return isUserPremium ? (
     "You're are already a premium user"
   ) : (
-    <div className="m-10">
-      <div className="flex w-full">
-        <div className="card bg-base-300 rounded-box grid h-80 flex-grow place-items-center">
-          <h1 className="font-bold text-3xl">Silver Membership</h1>
-          <ul>
-            <li> - Chat with other people</li>
-            <li> - 100 connection Requests per day</li>
-            <li> - Blue Tick</li>
-            <li> - 3 months</li>
-          </ul>
+    <div className="m-10 animate-fade-in mt-20">
+      <div className="flex w-full max-w-5xl mx-auto gap-8 flex-col md:flex-row justify-center items-center">
+        <div className="card bg-[#111111]/80 backdrop-blur-xl border border-white/10 shadow-2xl rounded-2xl flex-1 w-full h-auto min-h-[400px] p-8 flex flex-col justify-between hover:-translate-y-2 transition-transform duration-300">
+          <div className="text-center">
+            <h1 className="font-jetbrains font-bold text-3xl text-white mb-6">Silver Membership</h1>
+            <ul className="text-gray-400 space-y-3 font-inter text-lg text-left inline-block">
+              <li className="flex gap-3 items-center"><span className="text-[#00f5ff] font-bold">✓</span> Chat with other people</li>
+              <li className="flex gap-3 items-center"><span className="text-[#00f5ff] font-bold">✓</span> 100 connection requests per day</li>
+              <li className="flex gap-3 items-center"><span className="text-[#00f5ff] font-bold">✓</span> Blue Tick</li>
+              <li className="flex gap-3 items-center"><span className="text-[#00f5ff] font-bold">✓</span> 3 months validity</li>
+            </ul>
+          </div>
           <button
-            onClick={() => handleBuyClick("gold")}
-            className="btn btn-secondary"
+            onClick={() => handleBuyClick("silver")}
+            className="btn w-full bg-[#00f5ff]/10 border border-[#00f5ff]/50 text-[#00f5ff] hover-glow-cyan rounded-xl font-jetbrains text-lg mt-8 transition-all"
           >
             Buy Silver
           </button>
         </div>
-        <div className="divider divider-horizontal">OR</div>
-        <div className="card bg-base-300 rounded-box grid h-80 flex-grow place-items-center">
-          <h1 className="font-bold text-3xl">Gold Membership</h1>
-          <ul>
-            <li> - Chat with other people</li>
-            <li> - Inifiniye connection Requests per day</li>
-            <li> - Blue Tick</li>
-            <li> - 6 months</li>
-          </ul>
+        
+        <div className="divider md:divider-horizontal text-gray-500 font-jetbrains">OR</div>
+        
+        <div className="card bg-[#111111]/80 backdrop-blur-xl border border-white/10 shadow-2xl rounded-2xl flex-1 w-full h-auto min-h-[400px] p-8 flex flex-col justify-between hover:-translate-y-2 transition-transform duration-300">
+          <div className="text-center">
+            <h1 className="font-jetbrains font-bold text-3xl text-white mb-6">Gold Membership</h1>
+            <ul className="text-gray-400 space-y-3 font-inter text-lg text-left inline-block">
+              <li className="flex gap-3 items-center"><span className="text-[#7c3aed] font-bold">✓</span> Chat with other people</li>
+              <li className="flex gap-3 items-center"><span className="text-[#7c3aed] font-bold">✓</span> Infinite connection requests per day</li>
+              <li className="flex gap-3 items-center"><span className="text-[#7c3aed] font-bold">✓</span> Blue Tick</li>
+              <li className="flex gap-3 items-center"><span className="text-[#7c3aed] font-bold">✓</span> 6 months validity</li>
+            </ul>
+          </div>
           <button
             onClick={() => handleBuyClick("gold")}
-            className="btn btn-primary"
+            className="btn w-full bg-[#7c3aed]/10 border border-[#7c3aed]/50 text-[#7c3aed] hover-glow-purple rounded-xl font-jetbrains text-lg mt-8 transition-all"
           >
             Buy Gold
           </button>

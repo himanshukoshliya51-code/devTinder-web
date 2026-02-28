@@ -12,29 +12,31 @@ const Body = () => {
   const navigate = useNavigate();
   const userData = useSelector((store) => store.user);
 
-  const fetchUser = async () => {
-    if (userData) return;
-
-    try {
-      const res = await axios.get(BASE_URL + "/profile/view", {
-        withCredentials: true,
-      });
-      dispatch(addUser(res.data));
-    } catch (err) {
-      if (err.status === 401) {
-        navigate("/login");
-      }
-      console.error(err);
-    }
-  };
-
   useEffect(() => {
+    const fetchUser = async () => {
+      if (userData) return;
+
+      try {
+        const res = await axios.get(BASE_URL + "/profile/view", {
+          withCredentials: true,
+        });
+        dispatch(addUser(res.data));
+      } catch (err) {
+        if (err.status === 401) {
+          navigate("/login");
+        }
+        console.error(err);
+      }
+    };
+
     fetchUser();
-  }, []);
+  }, [dispatch, navigate, userData]);
   return (
-    <div>
+    <div className="min-h-screen flex flex-col bg-gradient-to-br from-[#0f172a] to-[#020617] text-gray-100 font-inter">
       <NavBar />
-      <Outlet />
+      <main className="flex-grow">
+        <Outlet />
+      </main>
       <Footer />
     </div>
   );
